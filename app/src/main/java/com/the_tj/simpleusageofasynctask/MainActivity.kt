@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.the_tj.simpleusageofasynctask.databinding.ActivityMainBinding
+import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
@@ -17,6 +18,12 @@ import java.net.URL
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
     private val Tag="MYTAG"
+    private lateinit var name:String
+    private lateinit var family:String
+    private lateinit var number:String
+    private lateinit var age:String
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityMainBinding.inflate(layoutInflater)
@@ -35,7 +42,8 @@ class MainActivity : AppCompatActivity() {
             var result: String
             var connection: HttpURLConnection? = null
             try {
-                val url = URL("https://run.mocky.io/v3/a883d7c6-d399-4d61-bb96-14749c05be0f")
+                //val url = URL("https://run.mocky.io/v3/a883d7c6-d399-4d61-bb96-14749c05be0f")
+                val url = URL("https://run.mocky.io/v3/57f4d2c4-fcfb-40d2-98ed-72f031740e8d")
                 connection = url.openConnection() as HttpURLConnection
                 connection.doInput = true
                 connection.doOutput = true
@@ -78,9 +86,25 @@ class MainActivity : AppCompatActivity() {
         override fun onPostExecute(result: String?) {
             super.onPostExecute(result)
             cancelProgressDialog()
-            binding.tv.text=result.toString()
+            binding.tv.text="raw json: \n"+result.toString()
 
-            Log.i(Tag,result.toString())
+            val jsonObject=JSONObject(result)
+            name=jsonObject.optString("name")
+            family=jsonObject.optString("family")
+            number=jsonObject.optString("number")
+            age=jsonObject.optString("age")
+            val characteristics=jsonObject.optJSONObject("characteristics")
+            val weight=characteristics.optString("weight")
+            val hight=characteristics.optString("hight")
+            val diet=characteristics.optString("diet")
+
+
+            binding.apply {
+                tvName.text=name
+                tvAge.text=age
+                tvNumber.text=number
+                tvFamily.text="characteristics: \n$family \n $weight \n $hight \n $diet "
+            }
 
         }
 
