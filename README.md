@@ -1,5 +1,6 @@
 # SimpleUsageOfAsyncTask
 This is a simple program for testing the AsyncTask library. In this program, an artificial API has been created using the mocky.io site for testing data retrieval. Finally, the JSON file is displayed in a TextView. This program also utilizes data binding.
+
 InputStreamReader is a class in Java (and Kotlin, which is interoperable with Java) that serves as a bridge between byte streams and character streams. It is used to read bytes from an InputStream and decode them into characters using a specified character encoding.
 
 Here's a brief explanation of how InputStreamReader works:
