@@ -9,6 +9,8 @@ Input Stream (InputStream): This is a stream of raw bytes, typically representin
 
 Character Encoding: Bytes in a computer are just numbers, and how these numbers are interpreted to represent characters depends on a character encoding. A character encoding is a set of rules that assigns numerical values to characters.
 
+InputStreamReader: This class wraps an InputStream and provides a way to read characters from it. It takes care of decoding the raw bytes into characters using a specified character encoding.
+
 if you want to use gson you can see "useGsonToMakeLifeEasier" branch
 
 
