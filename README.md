@@ -15,3 +15,5 @@ if you want to use gson you can see "useGsonToMakeLifeEasier" branch
 
 
 
+
+![2023-11-19_22h07_56](https://github.com/mahditajdini/SimpleUsageOfAsyncTask/assets/79911433/78f1aa2d-8293-479b-b93b-30ea09cb165c)
