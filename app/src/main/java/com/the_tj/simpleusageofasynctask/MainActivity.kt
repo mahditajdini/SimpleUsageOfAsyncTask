@@ -5,6 +5,7 @@ import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.google.gson.Gson
 import com.the_tj.simpleusageofasynctask.databinding.ActivityMainBinding
 import org.json.JSONObject
 import java.io.BufferedReader
@@ -88,15 +89,16 @@ class MainActivity : AppCompatActivity() {
             cancelProgressDialog()
             binding.tv.text="raw json: \n"+result.toString()
 
-            val jsonObject=JSONObject(result)
-            name=jsonObject.optString("name")
-            family=jsonObject.optString("family")
-            number=jsonObject.optString("number")
-            age=jsonObject.optString("age")
-            val characteristics=jsonObject.optJSONObject("characteristics")
-            val weight=characteristics.optString("weight")
-            val hight=characteristics.optString("hight")
-            val diet=characteristics.optString("diet")
+            val responseData= Gson().fromJson(result,ResponseModel::class.java)
+
+            name=responseData.name
+            family=responseData.family
+            number=responseData.number
+            age=responseData.age
+            val characteristics=responseData.characteristics
+            val weight=characteristics.weight
+            val hight=characteristics.hight
+            val diet=characteristics.diet
 
 
             binding.apply {
